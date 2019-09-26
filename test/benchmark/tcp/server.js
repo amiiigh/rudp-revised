@@ -20,6 +20,6 @@ server.on('error', (err) => {
   throw err;
 });
 
-server.listen(8124, '0.0.0.0', () => {
+server.listen(serverPort, '0.0.0.0', () => {
   console.log('server has started');
 }); 
