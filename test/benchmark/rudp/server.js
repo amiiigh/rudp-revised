@@ -12,7 +12,7 @@ var server = new rudp.Server(serverSocket);
 
 server.on('connection', (connection) => {
 	connection.on('data', (data) => {
-		console.log('ddd')
+		console.log(data.length)
   		dest.write(data)
   	});
 });
