@@ -14,18 +14,22 @@ var clientSocket = dgram.createSocket('udp4')
 var readStream = fs.createReadStream(filePath)
 var client = new rudp.Client(clientSocket, serverAddress, serverPort);
 var totalDataSize = 0
-readStream.on('data', function(chunk) {
-	if (!timerIsRunning) {
-		timerIsRunning = true
-		startTime = process.hrtime();
-	}
-	totalDataSize += chunk.length
-	client.send(chunk)
-});
 
-readStream.on('end', function() {
-	var endTime = process.hrtime(startTime);
-	console.log(chalk.bold.green('File',totalDataSize,  'has been sent', endTime[1]/1000000, ' ms'))
-	client.close()
-	// clientSocket.close()
-});
+var data = fs.readFileSync(filePath);
+// readStream.on('data', function(chunk) {
+// 	if (!timerIsRunning) {
+// 		timerIsRunning = true
+// 		startTime = process.hrtime();
+// 	}
+// 	totalDataSize += chunk.length
+// 	client.send(chunk)
+// });
+console.log(data.length)
+client.send(data)
+
+// readStream.on('end', function() {
+// 	var endTime = process.hrtime(startTime);
+// 	console.log(chalk.bold.green('File',totalDataSize,  'has been sent', endTime[1]/1000000, ' ms'))
+// 	// client.close()
+// 	// clientSocket.close()
+// });
