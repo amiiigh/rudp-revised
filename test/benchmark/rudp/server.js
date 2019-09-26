@@ -1,20 +1,16 @@
-var rudp = require('../../lib');
+var rudp = require('../../../lib');
 var dgram = require('dgram');
 var fs = require('fs');
+var serverPort = args[0]
+
+var dest = fs.createWriteStream('received.json');
 var serverSocket = dgram.createSocket('udp4');
-
-serverSocket.bind(3001);
-
+serverSocket.bind(serverPort);
 var server = new rudp.Server(serverSocket);
 
-server.on('close', function () {
-  serverSocket.close();
-});
-
-server.on('connection', function (connection) {
-  connection.on('data', function (data) {
-  	fs.appendFileSync('received', data)
-  	// console.log(data.toString())
-  	console.log(fs.statSync('received')['size'])
+server.on('connection', (connection) => {
+  connection.on('data', (data) => {
+  	console.log(data.toString())
+  	dest.write(data)
   });
 });
