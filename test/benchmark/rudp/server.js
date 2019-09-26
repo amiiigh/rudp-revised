@@ -11,9 +11,8 @@ console.log('server is running on ', serverPort)
 var server = new rudp.Server(serverSocket);
 
 server.on('connection', (connection) => {
-	console.log('new connection')
 	connection.on('data', (data) => {
-  	console.log(data.toString())
-  	dest.write(data)
-  });
+		console.log('ddd')
+  		dest.write(data)
+  	});
 });
