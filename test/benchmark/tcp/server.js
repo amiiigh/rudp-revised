@@ -10,7 +10,6 @@ const server = net.createServer((socket) => {
     console.log('client disconnected');
   });
   socket.on('data', (data) => {
-    console.log(data.toString())
     dest.write(data);
   })
 });

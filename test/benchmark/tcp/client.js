@@ -1,23 +1,24 @@
 const net = require('net');
 const fs = require('fs');
 const path = require('path');
+var chalk    = require('chalk');
 var args = process.argv.slice(2);
 var filePath = args[2]
 var serverPort = args[1]
 var serverAddress = args[0]
-var sync = fs.createReadStream(filePath);
+var readStream = fs.createReadStream(filePath);
 var client = new net.Socket();
 client.connect(serverPort, serverAddress);
-sync.on('error', function(e) {
+readStream.on('error', function(e) {
 	console.error(e);
 });
-sync.on('open', function() {
-	sync.pipe(client);
+readStream.on('data', function(chunk) {
+	client.write(chunk)
 });
-sync.on('finish', function() {
-	socket.end();
+readStream.on('end', function() {
+	client.end();
 });
 
 client.on('end', () => {
-  console.log('disconnected from server');
+  chalk.bold.yellow('disconnected from server');
 });
