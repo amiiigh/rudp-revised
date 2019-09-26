@@ -9,10 +9,7 @@ const server = net.createServer((socket) => {
     console.log('client disconnected');
   });
   socket.on('data', (data) => {
-      fs.appendFile('received.json', function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-    });
+      fs.appendFile('received.json');
   })
 });
 

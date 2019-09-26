@@ -9,8 +9,8 @@ console.log('preparing the file to send ...')
 console.log('the file size:', fs.statSync(filePath)['size'])
 var data = fs.readFileSync(filePath);
 console.log('the file is ready to send')
-
-const client = net.connect({port: serverPort, address: serverAddress}, () => {
+var client = new net.Socket();
+client.connect(serverPort, serverAddress, () => {
   console.log('connected to server!');
   client.write(data);
 });
