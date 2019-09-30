@@ -2,7 +2,6 @@ var rudp = require('../../../lib');
 var dgram = require('dgram');
 var fs = require('fs');
 var args = process.argv.slice(2);
-var chalk = require('chalk')
 var serverPort = args[0]
 
 var dest = fs.createWriteStream('received.json');
