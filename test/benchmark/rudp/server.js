@@ -30,7 +30,7 @@ serverSocket.on('message', function (message, rinfo) {
 	  	console.log(totalSize,'/',fileSize)
 	  	if (totalSize === fileSize) {
 	  		endTime = process.hrtime(startTime);
-			console.log('File',totalSize,  'has been received', endTime[1]/1000000, ' ms')
+			console.log('File',totalSize,  'has been received',endTime[0] + endTime[1]/1000000000)
 	  	}
 		dest.write(data)
 	  })
