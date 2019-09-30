@@ -13,7 +13,8 @@ var timerIsRunning = false
 var startTime = 0
 var endTime = 0
 var totalSize = 0
-var fileSize = 81664
+const stats = fs.statSync("../512MB.zip");
+var fileSize = stats.size
 serverSocket.on('message', function (message, rinfo) {
 	var addressKey = rinfo.address + rinfo.port;
 	var connection;
@@ -26,7 +27,7 @@ serverSocket.on('message', function (message, rinfo) {
 				startTime = process.hrtime();
 			}
 	  	totalSize += data.length
-	  	console.log(totalSize,'/',data.length)
+	  	console.log(totalSize,'/',fileSize)
 	  	if (totalSize === fileSize) {
 	  		endTime = process.hrtime(startTime);
 			console.log('File',totalSize,  'has been received', endTime[1]/1000000, ' ms')
