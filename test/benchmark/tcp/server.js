@@ -6,7 +6,7 @@ var timerIsRunning = false
 var startTime = 0
 var endTime = 0
 var totalSize = 0
-const stats = fs.statSync("../512MB.zip");
+const stats = fs.statSync(args[1]);
 var fileSize = stats.size
 var dest = fs.createWriteStream('received');
 const server = net.createServer((socket) => {
@@ -25,7 +25,7 @@ const server = net.createServer((socket) => {
         endTime = process.hrtime(startTime);
         console.log('File',totalSize,  'has been received',endTime[0] + endTime[1]/1000000000)
       }
-    dest.write(data);
+    // dest.write(data);
   })
 });
 
