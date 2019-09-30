@@ -1,6 +1,5 @@
 const net = require('net');
 const fs = require('fs');
-var chalk    = require('chalk');
 var args = process.argv.slice(2);
 var serverPort = args[0]
 var timerIsRunning = false
@@ -24,7 +23,7 @@ const server = net.createServer((socket) => {
       totalSize += data.length
       if (totalSize === fileSize) {
         endTime = process.hrtime(startTime);
-        console.log(chalk.bold.green('File',totalSize,  'has been received', endTime[1]/1000000, ' ms'))
+        console.log('File',totalSize,  'has been received', endTime[1]/1000000, ' ms')
       }
     dest.write(data);
   })
