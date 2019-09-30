@@ -28,7 +28,7 @@ serverSocket.on('message', function (message, rinfo) {
 	  	totalSize += data.length
 	  	if (totalSize === fileSize) {
 	  		endTime = process.hrtime(startTime);
-			console.log(chalk.bold.green('File',totalSize,  'has been received', endTime[1]/1000000, ' ms'))
+			console.log('File',totalSize,  'has been received', endTime[1]/1000000, ' ms')
 	  	}
 		dest.write(data)
 	  })
