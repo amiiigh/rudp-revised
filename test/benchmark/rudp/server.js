@@ -13,7 +13,7 @@ var timerIsRunning = false
 var startTime = 0
 var endTime = 0
 var totalSize = 0
-const stats = fs.statSync("../512MB.zip");
+const stats = fs.statSync(args[1]);
 var fileSize = stats.size
 serverSocket.on('message', function (message, rinfo) {
 	var addressKey = rinfo.address + rinfo.port;
