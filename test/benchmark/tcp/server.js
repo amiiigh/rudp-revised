@@ -7,8 +7,9 @@ var timerIsRunning = false
 var startTime = 0
 var endTime = 0
 var totalSize = 0
-var fileSize = 81664
-var dest = fs.createWriteStream('received.json');
+const stats = fs.statSync("../512MB.zip");
+var fileSize = stats.size
+var dest = fs.createWriteStream('received');
 const server = net.createServer((socket) => {
   socket.name = socket.remoteAddress + ":" + socket.remotePort 
   console.log('new client connected ', socket.name);
