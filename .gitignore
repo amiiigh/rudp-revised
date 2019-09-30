@@ -1,3 +1,4 @@
 out
+test/benchmark/512MB.zip
 node_modules
 npm-debug.log
